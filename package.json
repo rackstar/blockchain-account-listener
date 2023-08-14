@@ -30,13 +30,14 @@
     "mocha": "^10.2.0",
     "prettier": "^3.0.1",
     "sinon": "^15.2.0",
+    "ts-mocha": "^10.0.0",
     "typescript": "^5.1.6"
   },
   "scripts": {
     "start": "npm run compile && LOG_LEVEL=info node dist/index.js",
     "start-debug": "npm run compile && LOG_LEVEL=debug node dist/index.js",
     "compile": "npx tsc",
-    "test": "c8 mocha 'test/*.spec.ts'",
+    "test": "c8 ts-mocha 'test/*.spec.ts'",
     "lint-check": "eslint src/*.ts test/*.ts",
     "lint": "eslint src/*.ts test/*.ts --fix"
   }
