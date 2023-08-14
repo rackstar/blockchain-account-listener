@@ -1,4 +1,4 @@
-/* eslint no-await-in-loop: 0 no-restricted-syntax: 0 */
+/* eslint-disable no-await-in-loop, no-restricted-syntax, no-console */
 import * as fs from "fs/promises";
 import * as path from "path";
 import * as logLevel from "console-log-level";

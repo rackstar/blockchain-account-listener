@@ -1,6 +1,6 @@
 import { SolanaAccount } from "../src/types";
 
-export const testAccountUpdates = (): SolanaAccount[] => [
+const testAccountUpdates = (): SolanaAccount[] => [
   {
     id: "6BhkGCMVMyrjEEkrASJcLxfAvoW43g6BubxjpeUyZFoz",
     accountType: "mint",
@@ -22,3 +22,5 @@ export const testAccountUpdates = (): SolanaAccount[] => [
     version: 7,
   },
 ];
+
+export default testAccountUpdates;

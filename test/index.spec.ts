@@ -4,7 +4,7 @@ import * as logLevel from "console-log-level";
 import { after, afterEach, before, describe, it } from "mocha";
 import { SinonFakeTimers, SinonSandbox, SinonSpy, createSandbox } from "sinon";
 import Indexer from "../src/indexer";
-import { testAccountUpdates } from "./test-data.spec";
+import testAccountUpdates from "./test-data.spec";
 
 describe("Acceptance Criteria Tests", () => {
   let sandbox: SinonSandbox;

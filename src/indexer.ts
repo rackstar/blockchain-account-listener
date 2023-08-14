@@ -1,3 +1,4 @@
+/* eslint-disable  no-console */
 import * as consoleLog from "console-log-level";
 import { ACCOUNT_TYPES } from "./constants";
 import { AccountType, EventObject, SolanaAccount } from "./types";
@@ -184,7 +185,7 @@ export default class Indexer implements IIndexer {
       this.log.error(`invalid callbackTimeMs ${callbackTimeMs}`);
       return false;
     }
-    // NOTE: data is not validated as it can contain anything
+    // NOTE: data is not validated as we assume it can contain anything
     return true;
   };
 }
