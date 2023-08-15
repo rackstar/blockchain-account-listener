@@ -1,11 +1,12 @@
 /* eslint-disable no-await-in-loop, no-restricted-syntax, no-console */
 import * as fs from "fs/promises";
 import * as path from "path";
-import * as logLevel from "console-log-level";
-import Event from "./event";
-import Indexer from "./indexer";
-import { SolanaAccount } from "./types";
-import { delay, inspect, random } from "./utils";
+import chalk from "chalk";
+import logLevel from "console-log-level";
+import Event from "./event.js";
+import Indexer from "./indexer.js";
+import { SolanaAccount } from "./types.js";
+import { delay, inspect, random } from "./utils.js";
 
 /**
  * Reads the data from "./coding-challenge-input.json" and parses it back to JSON
@@ -56,7 +57,10 @@ const execute = async (): Promise<void> => {
   process.on("exit", () => {
     const failedEvents = indexer.getFailedEvents();
     if (failedEvents.length) {
-      console.info(`Failed Events:\n`, inspect(failedEvents));
+      console.info(
+        chalk.red(`\n${failedEvents.length} Failed Events:\n`),
+        inspect(failedEvents),
+      );
     }
     indexer.printHighestTokenAccounts();
   });

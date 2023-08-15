@@ -1,8 +1,9 @@
-/* eslint-disable  no-console */
+/* eslint-disable no-console */
 import * as consoleLog from "console-log-level";
-import { ACCOUNT_TYPES } from "./constants";
-import { AccountType, EventObject, SolanaAccount } from "./types";
-import { inspect } from "./utils";
+import chalk from "chalk";
+import { ACCOUNT_TYPES } from "./constants.js";
+import { AccountType, EventObject, SolanaAccount } from "./types.js";
+import { inspect } from "./utils.js";
 
 type Id = string;
 type Version = number;
@@ -39,7 +40,9 @@ export default class Indexer implements IIndexer {
     const start = Date.now();
     const callback = (accountUpdate: SolanaAccount) => {
       const { id, version } = accountUpdate;
-      this.log.info(`${id} v${version} cb executed +${Date.now() - start}ms`);
+      this.log.info(
+        chalk.green(`${id} v${version} cb executed +${Date.now() - start}ms`),
+      );
     };
     return this.index(event, callback);
   };
@@ -48,14 +51,14 @@ export default class Indexer implements IIndexer {
    * Prints the highest token account details for each of the accountTypes in descending order
    */
   public printHighestTokenAccounts(): void {
-    console.info("\nHighest Tokens Leaderboard\n");
+    console.info(chalk.magenta("\nHighest Tokens Leaderboard\n"));
     Object.values(this.highestTokenAccounts)
       .sort((a, b) => b.tokens - a.tokens)
       .forEach((account) => {
         const { id, version, tokens } = account;
         console.info(account.accountType.toUpperCase());
         if (id && version) {
-          console.info(`${id} v${version}: ${tokens || 0}`);
+          console.info(`${id}: ${tokens || 0} (v${version})`);
         }
       });
   }
@@ -112,11 +115,13 @@ export default class Indexer implements IIndexer {
     const currVersionToBeExecuted = this.idVersionToBeExecuted[id] || 0;
     if (version < currVersionToBeExecuted) {
       this.log.info(
-        `${id} v${version} ignored, current v${currVersionToBeExecuted}`,
+        chalk.yellow(
+          `${id} v${version} ignored, current v${currVersionToBeExecuted}`,
+        ),
       );
       return;
     }
-    this.log.info(`${id} v${version} indexed +${callbackTimeMs}ms`);
+    this.log.info(chalk.blue(`${id} v${version} indexed +${callbackTimeMs}ms`));
     this.idVersionToBeExecuted[id] = Math.max(version, currVersionToBeExecuted);
 
     setTimeout(() => {
@@ -125,7 +130,9 @@ export default class Indexer implements IIndexer {
       if (version !== versionToBeExecuted) {
         // cancelled - has been replaced with a newer version
         this.log.info(
-          `${id} v${version} cb cancelled by v${versionToBeExecuted}`,
+          chalk.red(
+            `${id} v${version} cb cancelled by v${versionToBeExecuted}`,
+          ),
         );
       } else {
         // not cancelled - execute callback
