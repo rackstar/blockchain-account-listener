@@ -1,4 +1,4 @@
-import { ACCOUNT_TYPES_CONST } from "./constants";
+import { ACCOUNT_TYPES_CONST } from "./constants.js";
 
 export type AccountType = (typeof ACCOUNT_TYPES_CONST)[number];
 

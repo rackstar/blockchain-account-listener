@@ -1,20 +1,20 @@
 /* eslint @typescript-eslint/no-unused-expressions: 0 */
 import { expect } from "chai";
-import * as logLevel from "console-log-level";
+import logLevel from "console-log-level";
 import { after, afterEach, before, describe, it } from "mocha";
-import { SinonFakeTimers, SinonSandbox, SinonSpy, createSandbox } from "sinon";
-import Indexer from "../src/indexer";
-import testAccountUpdates from "./test-data.spec";
+import { SinonFakeTimers, SinonSandbox, SinonStub, createSandbox } from "sinon";
+import Indexer from "../src/indexer.js";
+import testAccountUpdates from "./test-data.spec.js";
 
 describe("Acceptance Criteria Tests", () => {
   let sandbox: SinonSandbox;
-  let consoleSpy: SinonSpy;
+  let consoleSpy: SinonStub;
   let clock: SinonFakeTimers;
   let indexer: Indexer;
 
   before(() => {
     sandbox = createSandbox();
-    consoleSpy = sandbox.spy(console, "info");
+    consoleSpy = sandbox.stub(console, "info");
     clock = sandbox.useFakeTimers();
     indexer = new Indexer(logLevel());
   });

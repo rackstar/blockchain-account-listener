@@ -1,10 +1,10 @@
 import { expect } from "chai";
-import * as logLevel from "console-log-level";
+import logLevel from "console-log-level";
 import { beforeEach, describe, it } from "mocha";
 import * as sinon from "sinon";
-import Indexer from "../src/indexer";
-import { SolanaAccount } from "../src/types";
-import testAccountUpdates from "./test-data.spec";
+import Indexer from "../src/indexer.js";
+import { SolanaAccount } from "../src/types.js";
+import testAccountUpdates from "./test-data.spec.js";
 
 describe("Indexer", () => {
   let indexer: Indexer;

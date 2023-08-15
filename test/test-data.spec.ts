@@ -1,4 +1,4 @@
-import { SolanaAccount } from "../src/types";
+import { SolanaAccount } from "../src/types.js";
 
 const testAccountUpdates = (): SolanaAccount[] => [
   {

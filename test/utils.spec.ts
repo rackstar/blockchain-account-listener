@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { random } from "../src/utils";
+import { random } from "../src/utils.js";
 
 describe("random", () => {
   it("should return a number between min and max inclusive", () => {

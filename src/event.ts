@@ -5,8 +5,8 @@ import {
   EventListener,
   EventName,
   EventObject,
-} from "./types";
-import { inspect } from "./utils";
+} from "./types.js";
+import { inspect } from "./utils.js";
 
 /**
  * Thin wrapper around EventEmitter to add logs for .on and .emit methods
@@ -34,7 +34,8 @@ export default class Event extends EventEmitter implements IEvent {
       `subscribe(eventName: ${eventName}, listener: ${listener.toString()})`,
     );
     this.on(eventName, listener);
-    this.log.info(`Listening to ${eventName} events...`);
+    // eslint-disable-next-line no-console
+    console.info(`Listening to ${eventName} events...\n`);
   };
 
   /**
